@@ -8,9 +8,14 @@
    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     <title>Dashboard-Admin</title>
 </head>
 <body>
+    <!-- Include the navbar -->
+    {{-- @include('navbar.nav-side') --}}
+
     
+
 </body>
 </html>

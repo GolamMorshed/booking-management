@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CareHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/dashboard',function(){
+    return view('admin.dashbard');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/care_home',function(){
+    return view('admin.homes');
+});
+Route::post('/create_home',[CareHomeController::class, 'store'])->name('add_home');
