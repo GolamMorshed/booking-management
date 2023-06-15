@@ -14,16 +14,15 @@ class CareHomeController extends Controller
     public function index()
     {
         $all_homes = Home::all();   
-        //dd($all_homes);
         return view('admin.homes')->with('homes', $all_homes);
     }
-    
+ 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('admin.create_care_homes');
     }
 
     /**
