@@ -10,13 +10,51 @@
     <div style="margin: 160 150 70 150">
         <button  style="float: right;" type="button" class="btn btn-success">Create New Home</button>
         <br>
+        <br>
+        <br>
+        <div>   
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Home name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Contact Person</th>
+                    <th>Contact Person Email</th>
+                    <th>Contact Person Phone No</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                @foreach ($homes as $home)
+                <tbody>
+                  <tr>
+                    <td>{{$home->home_name}}</td>
+                    <td>{{$home->email}}</td>
+                    <td>{{$home->phone_no}}</td>
+                    <td>{{$home->contact_person_name}}</td>
+                    <td>{{$home->contact_person_phone_no}}</td>
+                    <td>{{$home->contact_person_email}}</td>
+                    <td>
+                        <button class="btn btn-success">View</button>
+                        <button class="btn btn-warning">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>           
+                </tbody>
+                @endforeach
+              </table> 
+           
+
+            @if(Session::has('Success'))
+            <div class="alert alert-success">
+                {{ Session::get('Success') }}
+            </div>
+            @endif
+        </div>
+
         <div style="magin:30 0 0 0">
-            <form  action="{{route('add_home')}}" method="post">
-                @if(Session::has('Success'))
-                <div class="alert alert-success">
-                    {{ Session::get('Success') }}
-                </div>
-                @endif
+            <form  action="{{route('care_homes.store')}}" method="post">
+               
                 @csrf
                 <div class="form-group">
                     <label for="">Home Name</label>

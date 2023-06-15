@@ -9,9 +9,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <title>Dashboard-Admin</title>
+    <title>Dashboard</title>
 </head>
 <body>
+    <h1>This is admin Dashboard</h1>
+    <p>Hello admin</p>
+    {{-- @foreach($homes as $home)
+        <h1>{{$home->home_name}}</h1>
+    @endforeach --}}
     <!-- Include the navbar -->
     {{-- @include('navbar.nav-side') --}}
 

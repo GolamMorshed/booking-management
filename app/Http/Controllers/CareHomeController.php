@@ -13,9 +13,11 @@ class CareHomeController extends Controller
      */
     public function index()
     {
-        //
+        $all_homes = Home::all();   
+        //dd($all_homes);
+        return view('admin.homes')->with('homes', $all_homes);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -42,16 +44,12 @@ class CareHomeController extends Controller
         $home->contact_person_phone_no = $request->input('contact_person_phone_no');
         $home->contact_person_email = $request->input('contact_person_email');
 
-        if($home->save())
-        {
-            // echo "Sucess to save data";
-            // return redirect->back();
+        if ($home->save()) {
             Session::flash('Success', 'Data saved successfully.');
             return redirect()->back();
-        }else{
+        } else {
             echo "Unable to save data";
         }
-
     }
 
     /**

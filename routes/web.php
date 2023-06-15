@@ -26,9 +26,11 @@ Route::get('/dashboard',function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/care_home',function(){
-    return view('admin.homes');
-});
-Route::post('/create_home',[CareHomeController::class, 'store'])->name('add_home');
+// Route::get('/care_home',function(){
+//     return view('admin.homes');
+// });
+// Route::post('/create_home',[CareHomeController::class, 'store'])->name('add_home');
+
+Route::resource('/care_homes', CareHomeController::class)->middleware(['auth']);
