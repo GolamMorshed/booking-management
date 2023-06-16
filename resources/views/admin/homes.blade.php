@@ -14,7 +14,14 @@
         <br>
         <br>
         <br>
-        <div>   
+        <div>
+            <div>
+                @if(Session::has('Success'))
+                <div class="alert alert-success">
+                    {{ Session::get('Success') }}
+                </div>
+                @endif
+            </div>   
             <table class="table">
                 <thead>
                   <tr>
@@ -38,9 +45,18 @@
                     <td>{{$home->contact_person_email}}</td>
                     <td>
                         <button class="btn btn-success">
-                            <a href="{{ route('care_homes.show',$home->id) }}" style="color: white; text-decoration: none;">View/Edit</a>
+                            <a href="{{ route('care_homes.show',$home->id) }}" 
+                            style="color: white; text-decoration: none;">View/Edit</a>
                         </button>
-                        <button class="btn btn-danger"  value="{{$home->id}}">Delete</button>
+                        <form action="{{ route('care_homes.destroy', $home->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                        </form>
+                        {{-- <button class="btn btn-danger">
+                            <a href="{{ route('care_homes.destroy',$home->id) }}" 
+                            style="color: white; text-decoration: none;">Delete</a>
+                        </button> --}}
                     </td>
                   </tr>           
                 </tbody>

@@ -88,6 +88,13 @@ class CareHomeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $home = Home::findOrFail($id);
+
+        if ($home->delete()) {
+            Session::flash('Success',"Data Delete Sucessfully");
+            return redirect()->back();
+        } else {
+            Session::flash('Error', 'Unable to delete data.');
+        }
     }
 }
