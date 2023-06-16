@@ -14,7 +14,7 @@ class CareHomeController extends Controller
     public function index()
     {
         $all_homes = Home::all();   
-        return view('admin.homes')->with('homes', $all_homes);
+        return view('admin.care_home.homes')->with('homes', $all_homes);
     }
 
    
@@ -23,7 +23,7 @@ class CareHomeController extends Controller
      */
     public function create()
     {
-        return view('admin.create_care_homes');
+        return view('admin.care_home.create_care_homes');
     }
 
     /**
@@ -64,7 +64,7 @@ class CareHomeController extends Controller
     public function show(string $id)
     {
         $home = Home::findOrFail($id);
-        return view('admin.single_home')->with('single_home',$home);
+        return view('admin.care_home.single_home')->with('single_home',$home);
     }
 
     /**
