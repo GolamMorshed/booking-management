@@ -17,8 +17,9 @@
             </div>
             @endif
         </div>
-        <form  action="{{route('care_homes.update',$single_home->id)}}" method="update">   
+        <form  action="{{route('care_homes.update',$single_home->id)}}" method="post">   
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="">Home Name</label>
                 <input type="text" class="form-control" value="{{$single_home->home_name}}" name="home_name">
