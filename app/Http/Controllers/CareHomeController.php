@@ -16,7 +16,8 @@ class CareHomeController extends Controller
         $all_homes = Home::all();   
         return view('admin.homes')->with('homes', $all_homes);
     }
- 
+
+   
     /**
      * Show the form for creating a new resource.
      */
@@ -56,7 +57,8 @@ class CareHomeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $home = Home::findOrFail($id);
+        return view('admin.single_home')->with('single_home',$home);
     }
 
     /**
@@ -72,7 +74,27 @@ class CareHomeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $home = Home::findOrFail($id);  
+        $home->home_name = $request->input('home_name');
+        $home->email = $request->input('email');
+        $home->phone_no = $request->input('phone_no');
+        $home->address1 = $request->input('address1');
+        $home->address2 = $request->input('address2');
+        $home->postcode = $request->input('postcode');
+        $home->city = $request->input('city');
+        $home->country = $request->input('country');
+        $home->contact_person_name = $request->input('contact_person_name');
+        $home->contact_person_phone_no = $request->input('contact_person_phone_no');
+        $home->contact_person_email = $request->input('contact_person_email');
+
+        if ($home->save()) {
+            Session::flash('Success', 'Data update successfully.');
+            return redirect()->back();
+        } else {
+            echo "Unable to save data";
+        }
+
     }
 
     /**

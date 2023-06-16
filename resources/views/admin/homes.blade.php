@@ -37,15 +37,13 @@
                     <td>{{$home->contact_person_phone_no}}</td>
                     <td>{{$home->contact_person_email}}</td>
                     <td>
-                        <button class="btn btn-success" value="{{$home->id}}">View</button>
-                        <button class="btn btn-warning" value="{{$home->id}}">Edit</button>
+                        <button class="btn btn-success" > <a href="{{ route('care_homes.show',$home->id) }}" style="color: white; text-decoration: none;">View/Edit</a></button>
                         <button class="btn btn-danger"  value="{{$home->id}}">Delete</button>
                     </td>
                   </tr>           
                 </tbody>
                 @endforeach
-              </table> 
-       
+              </table>  
     </div>  
 </body>
 </html>
