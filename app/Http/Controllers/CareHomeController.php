@@ -31,7 +31,14 @@ class CareHomeController extends Controller
      */
     public function store(Request $request)
     {
-        $home = new Home();
+
+        return $this->storeOrUpdate($request);
+    }
+
+    public function storeOrUpdate(Request $request, string $id = null)
+    {
+        $home = $id ? Home::findOrFail($id) : new Home();
+
         $home->home_name = $request->input('home_name');
         $home->email = $request->input('email');
         $home->phone_no = $request->input('phone_no');
@@ -43,9 +50,10 @@ class CareHomeController extends Controller
         $home->contact_person_name = $request->input('contact_person_name');
         $home->contact_person_phone_no = $request->input('contact_person_phone_no');
         $home->contact_person_email = $request->input('contact_person_email');
-
+    
         if ($home->save()) {
-            Session::flash('Success', 'Data saved successfully.');
+            $message = $id ? 'Data updated successfully.' : 'Data saved successfully.';
+            Session::flash('Success', $message);
             return redirect()->back();
         } else {
             echo "Unable to save data";
@@ -74,25 +82,7 @@ class CareHomeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $home = Home::findOrFail($id);  
-        $home->home_name = $request->input('home_name');
-        $home->email = $request->input('email');
-        $home->phone_no = $request->input('phone_no');
-        $home->address1 = $request->input('address1');
-        $home->address2 = $request->input('address2');
-        $home->postcode = $request->input('postcode');
-        $home->city = $request->input('city');
-        $home->country = $request->input('country');
-        $home->contact_person_name = $request->input('contact_person_name');
-        $home->contact_person_phone_no = $request->input('contact_person_phone_no');
-        $home->contact_person_email = $request->input('contact_person_email');
-    
-        if ($home->save()) {
-            Session::flash('Success', 'Data updated successfully.');
-            return redirect()->back();
-        } else {
-            echo "Unable to save data";
-        }
+        return $this->storeOrUpdate($request, $id);
     }
     
     /**
