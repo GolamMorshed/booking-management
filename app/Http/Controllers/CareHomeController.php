@@ -31,14 +31,12 @@ class CareHomeController extends Controller
      */
     public function store(Request $request)
     {
-
         return $this->storeOrUpdate($request);
     }
 
     public function storeOrUpdate(Request $request, string $id = null)
     {
         $home = $id ? Home::findOrFail($id) : new Home();
-
         $home->home_name = $request->input('home_name');
         $home->email = $request->input('email');
         $home->phone_no = $request->input('phone_no');
